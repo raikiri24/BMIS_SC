@@ -17,11 +17,17 @@
 		$select = (isset($_POST['search_key'])) ? (string) $_POST['search_key'] : "";
 	?>
   <!-- SEARCH FORM -->
+  <?php 
+ 
+  if($_SERVER['REQUEST_URI'] == "/bmis_sc/views/index.php?brgypage=residentlistpersitio"){
+    
+  ?>
   <form class="form-inline ml-3" method="POST" action="?brgypage=search">
-	
+	 
    <div class="input-group input-group-sm">
    	    <select class="form-control"  name="search_key" id="search_key" value="this.value"required>
 			<option selected DISABLED>FILTER</option>
+      
 			<option value="FULLNAME" <?php echo ($select=="FULLNAME") ? 'selected' : '';?>>FULLNAME</option>
 			<option value="AGE" <?php echo ($select=="AGE") ? 'selected' : '';?>>AGE</option>
 			
@@ -36,6 +42,9 @@
 	  
     </div>
   </form>
+  
+  <?php } ?>
+  
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
