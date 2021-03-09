@@ -21,7 +21,7 @@
         <img src="../assets/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block"><?php echo $fullname;?>&nbsp;<i>(<?php echo $brgy_name;?>)</i></a>
+        <a href="#" class="d-block mx-auto"><center><?php echo $fullname;?></br><i>(<?php echo $brgy_name;?>)</i></center></a>
         <small style="color:lightgreen;font-weight:bold;"><center><i><?php echo $logname?></i></center></small>
 		<?php if($usertype=="Kagawad"){?>
 		<small style="color:lightgreen;font-weight:bold;"><center><i><?php echo "SITIO-".$sitio;?></i></center></small>
