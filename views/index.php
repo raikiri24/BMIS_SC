@@ -210,8 +210,6 @@ $cedulanumbernot = getCedulaId($brgy_id);
 <input type="hidden" id="sitio_id_user" value="<?php echo $sitio_id_user; ?>">
 <input type="hidden" id="status" value="<?php echo $status;?>">
 <input type="hidden" name="usertypereport" value="<?php echo $usertype;?>" id="usertypereport">
-<input type="text" name="ornumber_not" id="ornumber_not" value="<?php echo getOrNumber($brgy_id);?>">
-<input type="text" name="cedulanumber_not" id="cedulanumber_not" value="<?php echo getCedulaId($brgy_id);?>">
 
 <!--
 <input type="text" id="log_id" value=<?php echo $log_id;?>>

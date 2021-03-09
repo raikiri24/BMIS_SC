@@ -1,9 +1,9 @@
 <?php
 
 if($usertype=="Administrator" || $usertype=="SuperAdmin"){
-$where = "ORDER BY brgy_id ASC";
+$where = "ORDER BY brgy_name ASC";
 }elseif($usertype=="BarangayCaptain" || $usertype=="Kagawad"){
-$where = "WHERE brgy_id='{$brgy_id}' ORDER BY brgy_id ASC";
+$where = "WHERE brgy_id='{$brgy_id}' ORDER BY brgy_name ASC";
 }
 ?>
 
