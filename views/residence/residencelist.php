@@ -8,7 +8,9 @@ $where = "ORDER BY house_id ASC";
 $where = "WHERE brgy_id_fk_house='{$brgy_id}'";
 }elseif($usertype=="Kagawad"){
 $where = "WHERE sitio_id_fk_house='{$sitio_id_user}' AND brgy_id_fk_house='{$brgy_id}'";
-}elseif($usertype=="Secretary"){
+}
+
+elseif($usertype=="Secretary"){
 $where = "WHERE sitio_id_fk_house='{$sitio_id_user}'";
 }
 

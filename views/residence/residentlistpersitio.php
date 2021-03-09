@@ -7,14 +7,17 @@
         <div class="row mb-2">
           <div class="col-sm-6">
           <?php  if($usertype=="BarangayCaptain") { ?>
-            <h1>List of Residence <select name="" id="">
+            <h1>List of Residence 
+            <select name="" id="sitio_lists" onchange = "getSelectedSitio(this.value)">
               <option value="">--Please choose a Sitio--</option>
               <?php
                         $crud -> sql("SELECT * FROM sitio_tbl ORDER BY sitio_name ASC");
                         $rs_sitio = $crud -> getResult();
                         foreach ($rs_sitio as $rs_brgyval) {
                           echo '<option value="'.$rs_brgyval['sitio_id'].'" '.$s.'>'.ucwords($rs_brgyval['sitio_name']).'</option>';
-                          }
+                          
+                        }
+                        $sitio_id_user = '';
                           ?>
             </select></h1> 
             
@@ -82,27 +85,55 @@
               <tbody>
                 <?php
                   $c = 1;
-				  $crud -> sql("SELECT * FROM resident_tbl WHERE brgy_id_fk_resident='{$brgy_id}' AND sitio_id_fk_resident='{$sitio_id_user}' ORDER BY dateregistered ASC");
+                  if($usertype == 'BarangayCaptain'){
+                    $crud -> sql("SELECT * FROM resident_tbl  ORDER BY dateregistered ASC");
                   $rs_issued = $crud -> getResult();
-
                   foreach($rs_issued as $rs_issuedval){
-					
-					
-					$house_id = gethouse_id($rs_issuedval['house_no_fk']);
-					
-					
-						
-					
-					$id = getTblResVal("brgy_id_fk_house", "houseno_tbl", "house_id", "'{$rs_issuedval['house_no_fk']}'");
-					$ids = getTblResVal("sitio_id_fk_house", "houseno_tbl", "house_id", "'{$rs_issuedval['house_no_fk']}'");
-					
-					$houseno = gethousenumber($rs_issuedval['house_no_fk']);
-					//$brgy_name_issued = getbrgyname($id);
-					$sitioname_Issued = getsitioname($ids);
-					$or = getOrNumber($rs_issuedval['brgy_id_fk_resident']);
-					$cedula = getCedulaId($rs_issuedval['brgy_id_fk_resident']);
-					
-                ?>
+					          $house_id = gethouse_id($rs_issuedval['house_no_fk']);
+                    $id = getTblResVal("brgy_id_fk_house", "houseno_tbl", "house_id", "'{$rs_issuedval['house_no_fk']}'");
+                    $ids = getTblResVal("sitio_id_fk_house", "houseno_tbl", "house_id", "'{$rs_issuedval['house_no_fk']}'");
+                    $houseno = gethousenumber($rs_issuedval['house_no_fk']);
+                    //$brgy_name_issued = getbrgyname($id);
+                    $sitioname_Issued = getsitioname($ids);
+                    $or = getOrNumber($rs_issuedval['brgy_id_fk_resident']);
+                    $cedula = getCedulaId($rs_issuedval['brgy_id_fk_resident']);
+                          ?>
+                      <tr role="row" class="even">
+                      <td class="sorting_1"><?php echo $c;?></td>
+                      <td><?php echo $houseno.' '.$sitioname_Issued;?></td>
+                      <td><?php echo $rs_issuedval['fname'].' '.$rs_issuedval['mname'].' '.$rs_issuedval['lname'];?></td>
+                      <td><?php echo getidentityofAll($rs_issuedval['gender']);?></td>
+                      <td><?php echo date('F d Y', strtotime($rs_issuedval['bday']));?></td>
+                      <td><?php echo getCivilStatus($rs_issuedval['civil_status']);?></td>
+                      <td><?php 
+                        if($rs_issuedval['religion']=="0"){
+                          echo $rs_issuedval['religion_specify'];
+                        }else{
+                          echo getReligionName($rs_issuedval['religion']);
+                        }
+                        ?></td>
+                      <td><a href="?brgypage=viewDetailsImage&resident_id=<?php echo $rs_issuedval['resident_id'];?>&house_id=<?php echo $rs_issuedval['house_no_fk'];?>" data-toggle="tooltip" title="View Details" class="btn btn-success btn-xs"><i class="fa fa-eye"></i>&nbsp;View Profile</a></td>
+                            </tr>
+                          <?php
+                      
+                          $c++;
+                      }}
+                  else{
+
+                    $crud -> sql("SELECT * FROM resident_tbl WHERE brgy_id_fk_resident='{$brgy_id}' AND sitio_id_fk_resident='{$sitio_id_user}' ORDER BY dateregistered ASC");
+                    $rs_issued = $crud -> getResult();
+                    foreach($rs_issued as $rs_issuedval){
+                      $house_id = gethouse_id($rs_issuedval['house_no_fk']);
+                      $id = getTblResVal("brgy_id_fk_house", "houseno_tbl", "house_id", "'{$rs_issuedval['house_no_fk']}'");
+                      $ids = getTblResVal("sitio_id_fk_house", "houseno_tbl", "house_id", "'{$rs_issuedval['house_no_fk']}'");
+                      $houseno = gethousenumber($rs_issuedval['house_no_fk']);
+                      //$brgy_name_issued = getbrgyname($id);
+                      $sitioname_Issued = getsitioname($ids);
+                      $or = getOrNumber($rs_issuedval['brgy_id_fk_resident']);
+                      $cedula = getCedulaId($rs_issuedval['brgy_id_fk_resident']);
+                     
+                  ?>
+                  
 
                 <tr role="row" class="even">
                     <td class="sorting_1"><?php echo $c;?></td>
@@ -123,7 +154,7 @@
                <?php
 					
                $c++;
-             }
+             }}
 
                ?>
             </tbody>
