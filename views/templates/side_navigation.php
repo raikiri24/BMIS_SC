@@ -35,22 +35,25 @@
 
           <?php //if($usertype=="SuperAdmin"){?>
 
-			<?php if($usertype=="Kagawad" || $usertype=="SuperAdmin"){?>
+			<?php if($usertype=="Kagawad" || $usertype=="SuperAdmin" || $usertype=="BarangayCaptain"){?>
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                  <i class="fas fa-cogs"></i>
+                <i class="fas fa-users"></i>
                   <p>
                     Residence
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
+                <?php if($usertype!="BarangayCaptain"){?>   
+                  
                   <li class="nav-item">
                     <a href="?brgypage=residence" class="nav-link active">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Registered Residence</p>
                     </a>
                   </li>
+                <?php  } ?>
 				  <li class="nav-item">
                     <a href="?brgypage=residentlistpersitio" class="nav-link active">
                       <i class="far fa-circle nav-icon"></i>
@@ -129,6 +132,8 @@
 			 <li class="nav-item has-treeview">
 
             <?php if($usertype=="SuperAdmin" || $usertype=="Administrator" || $usertype=="Secretary" || $usertype=="BarangayCaptain"){?>
+              
+              
               <a href="#" class="nav-link">
                 <i class="fas fa-cogs"></i>
                 <p>
@@ -136,6 +141,7 @@
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
+              
               <?PHP } ?>
               <ul class="nav nav-treeview" style="display: none;">
                 <?php if($usertype=="SuperAdmin" || $usertype=="Administrator"){?>

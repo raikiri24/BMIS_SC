@@ -49,7 +49,7 @@
               <tbody>
                 <?php
                   $c = 1;
-                  $crud -> sql("SELECT * FROM users_tbl WHERE brgy_id_fk='{$brgy_id}' AND usertype='Kagawad' && useractive!='0'");
+                  $crud -> sql("SELECT * FROM users_tbl WHERE usertype='Kagawad' && useractive!='0'");
                   $rs_off = $crud -> getResult();
 
                   foreach($rs_off as $rs_offval){

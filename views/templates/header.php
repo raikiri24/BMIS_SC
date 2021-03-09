@@ -21,7 +21,7 @@
 	
    <div class="input-group input-group-sm">
    	    <select class="form-control"  name="search_key" id="search_key" value="this.value"required>
-			<option selected DISABLED>SELECT YOUR KEYWORD</option>
+			<option selected DISABLED>FILTER</option>
 			<option value="FULLNAME" <?php echo ($select=="FULLNAME") ? 'selected' : '';?>>FULLNAME</option>
 			<option value="AGE" <?php echo ($select=="AGE") ? 'selected' : '';?>>AGE</option>
 			

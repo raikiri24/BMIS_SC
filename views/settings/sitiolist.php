@@ -1,9 +1,9 @@
 <?php
 
 if($usertype=="Administrator"){
-$where = "ORDER BY sitio_id ASC";
+$where = "ORDER BY sitio_name ASC";
 }elseif($usertype=="BarangayCaptain" || $usertype=="Kagawad"){
-$where = "WHERE brgy_id_fk='{$brgy_id}'";
+$where = "WHERE brgy_id_fk='{$brgy_id}' ORDER BY sitio_name ASC ";
 }
 
 ?>

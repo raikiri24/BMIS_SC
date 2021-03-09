@@ -10,15 +10,29 @@ if(isset($_GET['action'])){
 if($action=="addsitio"){
 	$crud = new CRUD();
 	$crud->connect();
-	$crud -> insert("sitio_tbl", array("sitio_id"=>'SITIO-'.$_GET['sitio_id'].generateCode(), "sitio_name"=>$_GET['sitio_name'], "brgy_id_fk"=>$_GET['sitio_id']));
-	$rs = $crud -> getResult();
-	if($rs){
-		echo 1;
-	}else{
-		echo 0;
+	if(checkbarangay($_GET['sitio_name']) == 0 ){
+		$crud -> insert("sitio_tbl", array("sitio_id"=>'SITIO-'.$_GET['sitio_id'].generateCode(), "sitio_name"=>$_GET['sitio_name'], "brgy_id_fk"=>$_GET['sitio_id']));
+		$rs = $crud -> getResult();
+		if($rs){
+			echo 1;
+		}else{
+			echo 0;
+		}
 	}
 	$crud->disconnect();
 }
+function checkbarangay($brgy_name){
+	$crud = new CRUD();
+	$crud->connect();
+
+	$crud -> sql("select * from sitio_tbl where sitio_name='". $brgy_name. "'");
+	$rsf = $crud->getResult();
+	$rowf = $crud->numRows();
+	return $rowf;
+
+	$crud->disconnect();
+}
+
 //sitio check if existing or not
 if($action=="checksitiodetails"){
 	$crud = new CRUD();

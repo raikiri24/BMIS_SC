@@ -102,9 +102,7 @@ if($usertype=="SuperAdmin"){
         </table>
       </div>
         <!-- /.card-body -->
-        <div class="card-footer" style="display: block;">
-          Footer
-        </div>
+        
         <!-- /.card-footer-->
       </div>
       <!-- /.card -->

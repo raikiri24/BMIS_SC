@@ -6,7 +6,22 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>List of Residence - <?php echo sitio_namesitio_name($sitio_id_user);?></h1>
+          <?php  if($usertype=="BarangayCaptain") { ?>
+            <h1>List of Residence <select name="" id="">
+              <option value="">--Please choose a Sitio--</option>
+              <?php
+                        $crud -> sql("SELECT * FROM sitio_tbl ORDER BY sitio_name ASC");
+                        $rs_sitio = $crud -> getResult();
+                        foreach ($rs_sitio as $rs_brgyval) {
+                          echo '<option value="'.$rs_brgyval['sitio_id'].'" '.$s.'>'.ucwords($rs_brgyval['sitio_name']).'</option>';
+                          }
+                          ?>
+            </select></h1> 
+            
+          <?php }
+          else{?>
+          <h1>List of Residence - <?php echo sitio_namesitio_name($sitio_id_user);?></h1>
+          <?php }?>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

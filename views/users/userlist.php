@@ -1,13 +1,13 @@
   <?php
 
 if($usertype=="SuperAdmin"){
-  $where = "ORDER BY user_id ASC";
+  $where = "ORDER BY fullname ASC";
 }elseif($usertype=="Administrator" ){
-  $where = "where usertype='BarangayCaptain' AND useractive='1' ORDER BY user_id ASC";
+  $where = "where usertype='BarangayCaptain' AND useractive='1' ORDER BY fullname ASC";
 }elseif($usertype=="BarangayCaptain"){
-  $where = "WHERE usertype NOT IN('SuperAdmin','Administrator','BarangayCaptain') AND brgy_id_fk='{$brgy_id}' && useractive='1' ORDER BY user_id ASC";
+  $where = "WHERE usertype NOT IN('SuperAdmin','Administrator','BarangayCaptain') AND brgy_id_fk='{$brgy_id}' && useractive='1' ORDER BY fullname ASC";
 }elseif($usertype=="Kagawad" || $usertype=="Secretary") {
-  $where = "WHERE usertype IN('Kagawad','Secretary') AND brgy_id_fk='{$brgy_id}' && useractive='1' ORDER BY user_id ASC";
+  $where = "WHERE usertype IN('Kagawad','Secretary') AND brgy_id_fk='{$brgy_id}' && useractive='1' ORDER BY fullname ASC";
 }
 ?>
   <div class="content-wrapper" style="min-height: 1589.56px;">
@@ -102,9 +102,7 @@ if($usertype=="SuperAdmin"){
         </table>
       </div>
         <!-- /.card-body -->
-        <div class="card-footer" style="display: block;">
-          Footer
-        </div>
+        
         <!-- /.card-footer-->
       </div>
       <!-- /.card -->
