@@ -270,7 +270,7 @@ $sitio_name_house = getsitioname($rs_housenoval['sitio_id_fk_house']);
       </div>
       <!-- /.card -->
 
-    </section> New Edit
+    </section> 
     <!-- /.content -->
 </div>
 
