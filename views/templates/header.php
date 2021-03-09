@@ -18,8 +18,8 @@
 	?>
   <!-- SEARCH FORM -->
   <?php 
- 
-  if($_SERVER['REQUEST_URI'] == "/bmis_sc/views/index.php?brgypage=residentlistpersitio"){
+  
+  if(basename($_SERVER['REQUEST_URI']) == "index.php?brgypage=residentlistpersitio"){
     
   ?>
   <form class="form-inline ml-3" method="POST" action="?brgypage=search">
